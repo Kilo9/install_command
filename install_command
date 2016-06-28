@@ -1,0 +1,22 @@
+#!/bin/bash
+#installs the script passed as an argument to the default executable location or the one provided
+DEFAULT_DIR=/usr/local/bin
+
+if [[ $# -eq 0 ]]; then
+    echo "[info] Usage: ./install_command <executable> [<directory>] -- where directory is optional and defaults to /usr/local/bin"
+    exit
+fi
+
+if [[ ! -x $1 ]]; then
+    echo "[error] $1 is not an executable!"
+    exit
+fi
+
+if [[ $# -eq 2 ]]; then
+    dir=$2
+else
+    dir=$DEFAULT_DIR
+fi
+
+echo "[info] moving $1 to $dir"
+cp $1 $dir 
